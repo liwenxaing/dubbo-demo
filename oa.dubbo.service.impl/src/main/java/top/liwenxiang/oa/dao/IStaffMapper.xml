@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.liwenxiang.oa.dao.IStaffMapper">
+
+    <resultMap id="staffMapHandler" type="Staff">
+            <id property="pkId" column="pk_id"/>
+            <result property="name" column="name"/>
+            <result property="age" column="age"/>
+            <result property="inDate" column="in_date"/>
+            <result property="bid" column="bid"/>
+            <result property="gender" column="gender"/>
+            <association property="ment" javaType="ment">
+                <result property="bName" column="bname"/>
+            </association>
+    </resultMap>
+
+    <select id="selectAllStaff" resultType="Staff" resultMap="staffMapHandler">
+          SELECT m.bname,s.in_date,s.pk_id,s.name,s.gender,s.bid,s.age FROM ment m,staff s WHERE m.bid = s.bid;
+    </select>
+
+</mapper>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.liwenxiang.oa.dao.IMentMapper">
+
+        <resultMap id="mapperMent" type="Ment">
+              <id property="bId" column="bid"/>
+              <result property="bName" column="bname"/>
+              <result property="logicalDeletion" column="logical_deletion"/>
+              <collection property="staffs" ofType="Staff">
+                    <id column="pk_id" property="pkId"/>
+                    <result property="name" column="name"/>
+                    <result property="age" column="age"/>
+                    <result property="inDate" column="in_date"/>
+                    <result property="bid" column="bid"/>
+                    <result property="gender" column="gender"/>
+              </collection>
+        </resultMap>
+
+        <select resultMap="mapperMent" parameterType="int" resultType="Ment" id="selectMentStaffById">
+              SELECT
+                    m.bname,s.pk_id,m.logical_deletion,s.name,s.gender,s.bid,s.age
+              FROM
+                    ment m,staff s
+              WHERE
+                    m.bid = s.bid
+              AND
+                    m.bid = #{0}
+        </select>
+</mapper>

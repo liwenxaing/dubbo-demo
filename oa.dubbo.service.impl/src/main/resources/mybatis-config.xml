@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<!-- 主配置文件 根标签 -->
+<configuration>
+      <typeAliases>
+           <package name="top.liwenxiang.oa.pojo"/>
+      </typeAliases>
+</configuration>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<assembly xmlns="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xmlns:shcemaLocation="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.0">
+    <!-- 改字符串会添加到tar.gz的名称垢面 作为后缀 -->
+    <id>assembly</id>
+    <!-- 指定打包的格式tar.gz 该类型压缩包在linux中比较常见 -->
+    <formats>
+        <format>tar.gz</format>
+    </formats>
+    <!-- 在tar.gz压缩包中是否包含根文件夹 改根文件夹名称和tar.gz去掉id后缀一致 -->
+    <includeBaseDirectory>true</includeBaseDirectory>
+    <fileSets>
+        <fileSet>
+            <!-- 相对项目根路径的相对路径 -->
+            <directory>assembly/bin</directory>
+            <outputDirectory>bin</outputDirectory>
+            <!-- 设置文件夹权限 和linux中一致 -->
+            <fileMode>0755</fileMode>
+        </fileSet>
+        <fileSet>
+            <directory>assembly/conf</directory>
+            <outputDirectory>conf</outputDirectory>
+            <fileMode>0644</fileMode>
+        </fileSet>
+    </fileSets>
+    <!-- 将所有依赖的jar包打包到压缩包中的根目录下的lib文件夹 -->
+    <!-- 包含第三方jar 以及自己依赖的jar以及服务接口(对于dubbo来说) -->
+    <dependencySets>
+        <dependencySet>
+            <outputDirectory>lib</outputDirectory>
+        </dependencySet>
+    </dependencySets>
+</assembly>
